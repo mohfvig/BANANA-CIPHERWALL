@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banana CipherWall Pro</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="logo-area">
+            <div class="banana-shield">🍌🛡️</div>
+            <h1>BANANA <span>CIPHERWALL</span></h1>
+        </div>
+
+        <div class="tabs">
+            <button onclick="setMode('pass')" id="btnPass" class="active">كلمة مرور</button>
+            <button onclick="setMode('user')" id="btnUser">اسم مستخدم</button>
+        </div>
+
+        <div class="display-box">
+            <input type="text" id="resultDisplay" placeholder="اكتب باسووردك أو ولّد واحد" oninput="analyzeStrength(this.value)" autocomplete="off">
+            <button onclick="copyIt()" class="copy-btn">نسخ</button>
+        </div>
+
+        <div id="qrcode" class="qr-zone"></div>
+
+        <div class="strength-meter" id="strengthCont">
+            <div style="display: flex; justify-content: space-between;">
+                <small id="stText">القوة: --</small>
+                <small id="charCount">0 حرف</small>
+            </div>
+            <div class="bar-container">
+                <div id="strengthBar" class="bar-fill"></div>
+            </div>
+            <small id="crackTime" style="color: #888; font-size: 0.75rem; display: block; margin-top: 5px;"></small>
+            <small id="warningMsg" style="color: #ff4d4d; display: block; margin-top: 5px;"></small>
+        </div>
+
+        <div id="settingsSection">
+            <input type="range" id="lenSlider" min="8" max="64" value="24">
+            <div class="options-grid">
+                <label><input type="checkbox" id="chkU" checked> A-Z</label>
+                <label><input type="checkbox" id="chkL" checked> a-z</label>
+                <label><input type="checkbox" id="chkN" checked> 0-9</label>
+                <label><input type="checkbox" id="chkS" checked> رموز</label>
+            </div>
+        </div>
+
+        <button onclick="run()" class="main-btn">توليد الآن ✨</button>
+
+        <div class="history-area">
+            <p>السجل (آخر 5 عمليات):</p>
+            <div id="historyList"></div>
+        </div>
+
+        <div class="stats">
+            <div>متصل: <span style="color:#39ff14">1</span></div>
+            <div>الزوار: <b>{{ total }}</b></div>
+        </div>
+            <footer class="main-footer">
+        <div class="footer-info">
+            <p>©  جميع الحقوق محفوظه لعام 2026 -  MULTIVERSE <span class="nav-logo">Hub</span></p>
+        </div>
+
+                <div class="social-icons">
+                  <h4>تواصل معنا</h4>
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                    <a href="#"><i class="fab fa-telegram"></i></a>
+                </div>
+    </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
